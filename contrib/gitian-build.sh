@@ -13,8 +13,8 @@ windows=true
 osx=true
 
 # Other Basic variables
-SIGNER=
-VERSION=
+SIGNER=20A93DED3979D75C
+VERSION=0.16
 commit=false
 url=https://github.com/fartcoin-project/fartcoin16
 proc=4
@@ -271,7 +271,7 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin=${COMMIT} --url fartcoin=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin16=${COMMIT} --url fartcoin16=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-linux.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-linux.yml
 	    mv build/out/fartcoin-*.tar.gz build/out/src/fartcoin-*.tar.gz ../fartcoin-binaries/${VERSION}
 	fi
@@ -281,8 +281,8 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin=${COMMIT} --url fartcoin=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin16=${COMMIT} --url fartcoin16=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-win.yml
 	    mv build/out/fartcoin-*-win-unsigned.tar.gz inputs/fartcoin-win-unsigned.tar.gz
 	    mv build/out/fartcoin-*.zip build/out/fartcoin-*.exe ../fartcoin-binaries/${VERSION}
 	fi
@@ -292,7 +292,7 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin=${COMMIT} --url fartcoin=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin16=${COMMIT} --url fartcoin16=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-osx.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-osx.yml
 	    mv build/out/fartcoin-*-osx-unsigned.tar.gz inputs/fartcoin-osx-unsigned.tar.gz
 	    mv build/out/fartcoin-*.tar.gz build/out/fartcoin-*.dmg ../fartcoin-binaries/${VERSION}
@@ -342,7 +342,7 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-signed ../fartcoin/contrib/gitian-descriptors/gitian-osx-signer.yml	
+	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-signed ../fartcoin16/contrib/gitian-descriptors/gitian-osx-signer.yml	
 	popd
 fi
 
