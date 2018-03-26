@@ -5,7 +5,7 @@
 # What to do
 sign=false
 verify=false
-build=false
+build=true
 
 # Systems to build
 linux=true
@@ -13,7 +13,7 @@ windows=true
 osx=true
 
 # Other Basic variables
-SIGNER=20A93DED3979D75C
+SIGNER="20A93DED3979D75C"
 VERSION=0.16
 commit=false
 url=https://github.com/fartcoin-project/fartcoin16
@@ -77,7 +77,7 @@ while :; do
         -S|--signer)
 	    if [ -n "$2" ]
 	    then
-		SIGNER=$2
+		SIGNER="$2"
 		shift
 	    else
 		echo 'Error: "--signer" requires a non-empty argument.'
@@ -190,7 +190,7 @@ fi
 # Get signer
 if [[ -n "$1" ]]
 then
-    SIGNER=$1
+    SIGNER="$1"
     shift
 fi
 
@@ -203,7 +203,7 @@ then
 fi
 
 # Check that a signer is specified
-if [[ $SIGNER == "" ]]
+if [[ "$SIGNER" == "" ]]
 then
     echo "$scriptName: Missing signer."
     echo "Try $scriptName --help for more information"
@@ -230,7 +230,7 @@ if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
     git clone https://github.com/fartcoin-project/gitian.sigs.git
-    git clone https://github.com/fartcoin-project/fartcoin-detached-sigs.git
+    git clone https://github.com/fartcoin-project/detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -272,7 +272,7 @@ then
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin16=${COMMIT} --url fartcoin16=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-linux.yml
 	    mv build/out/fartcoin-*.tar.gz build/out/src/fartcoin-*.tar.gz ../fartcoin-binaries/${VERSION}
 	fi
 	# Windows
@@ -282,7 +282,7 @@ then
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin16=${COMMIT} --url fartcoin16=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-win.yml
 	    mv build/out/fartcoin-*-win-unsigned.tar.gz inputs/fartcoin-win-unsigned.tar.gz
 	    mv build/out/fartcoin-*.zip build/out/fartcoin-*.exe ../fartcoin-binaries/${VERSION}
 	fi
@@ -293,7 +293,7 @@ then
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit fartcoin16=${COMMIT} --url fartcoin16=${url} ../fartcoin16/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-osx.yml
 	    mv build/out/fartcoin-*-osx-unsigned.tar.gz inputs/fartcoin-osx-unsigned.tar.gz
 	    mv build/out/fartcoin-*.tar.gz build/out/fartcoin-*.dmg ../fartcoin-binaries/${VERSION}
 	fi
@@ -306,9 +306,9 @@ then
             echo "Committing ${VERSION} Unsigned Sigs"
             echo ""
             pushd gitian.sigs
-            git add ${VERSION}-linux/${SIGNER}
-            git add ${VERSION}-win-unsigned/${SIGNER}
-            git add ${VERSION}-osx-unsigned/${SIGNER}
+            git add ${VERSION}-linux/"${SIGNER}"
+            git add ${VERSION}-win-unsigned/"${SIGNER}"
+            git add ${VERSION}-osx-unsigned/"${SIGNER}"
             git commit -a -m "Add ${VERSION} unsigned sigs for ${SIGNER}"
             popd
         fi
@@ -358,7 +358,7 @@ then
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
 	    ./bin/gbuild -i --commit signature=${COMMIT} ../fartcoin16/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-win-signer.yml
 	    mv build/out/fartcoin-*win64-setup.exe ../fartcoin-binaries/${VERSION}
 	    mv build/out/fartcoin-*win32-setup.exe ../fartcoin-binaries/${VERSION}
 	fi
@@ -369,7 +369,7 @@ then
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
 	    ./bin/gbuild -i --commit signature=${COMMIT} ../fartcoin16/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.ltc/ ../fartcoin16/contrib/gitian-descriptors/gitian-osx-signer.yml
 	    mv build/out/fartcoin-osx-signed.dmg ../fartcoin-binaries/${VERSION}/fartcoin-${VERSION}-osx.dmg
 	fi
 	popd
@@ -381,8 +381,8 @@ then
             echo ""
             echo "Committing ${VERSION} Signed Sigs"
             echo ""
-            git add ${VERSION}-win-signed/${SIGNER}
-            git add ${VERSION}-osx-signed/${SIGNER}
+            git add ${VERSION}-win-signed/"${SIGNER}"
+            git add ${VERSION}-osx-signed/"${SIGNER}"
             git commit -a -m "Add ${VERSION} signed binary sigs for ${SIGNER}"
             popd
         fi
