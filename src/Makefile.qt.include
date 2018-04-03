@@ -294,6 +294,7 @@ RES_ICONS = \
   qt/res/icons/eye.png \
   qt/res/icons/eye_minus.png \
   qt/res/icons/eye_plus.png \
+  qt/res/icons/fartcoin_splash.png \
   qt/res/icons/filesave.png \
   qt/res/icons/fontbigger.png \
   qt/res/icons/fontsmaller.png \
@@ -302,12 +303,12 @@ RES_ICONS = \
   qt/res/icons/history.png \
   qt/res/icons/info.png \
   qt/res/icons/key.png \
-  qt/res/icons/fartcoin_splash.png \
   qt/res/icons/lock_closed.png \
   qt/res/icons/lock_open.png \
   qt/res/icons/network_disabled.png \
   qt/res/icons/open.png \
   qt/res/icons/overview.png \
+  qt/res/icons/paper_wallet.png \
   qt/res/icons/quit.png \
   qt/res/icons/receive.png \
   qt/res/icons/remove.png \
@@ -321,6 +322,8 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
+  qt/res/icons/wallet_bgcoin.png \
+  qt/res/icons/wallet_bgsplash.png \
   qt/res/icons/warning.png \
   qt/res/icons/verify.png
 
@@ -389,6 +392,14 @@ endif
 RES_IMAGES = 
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+
+RES_FONTS = \
+  qt/res/fonts/ComicNeue-Bold-Oblique.ttf \
+  qt/res/fonts/ComicNeue-Bold.ttf \
+  qt/res/fonts/ComicNeue-Light-Oblique.ttf \
+  qt/res/fonts/ComicNeue-Light.ttf \
+  qt/res/fonts/ComicNeue-Regular-Oblique.ttf \
+  qt/res/fonts/ComicNeue-Regular.ttf
 
 BITCOIN_RC = qt/res/bitcoin-qt-res.rc
 
