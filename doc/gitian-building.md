@@ -1,9 +1,9 @@
 Gitian building
 ================
 
-*Setup instructions for a Gitian build of Bitcoin Core using a VM or physical system.*
+*Setup instructions for a Gitian build of fartcoin Core using a VM or physical system.*
 
-Gitian is the deterministic build process that is used to build the Bitcoin
+Gitian is the deterministic build process that is used to build the fartcoin
 Core executables. It provides a way to be reasonably sure that the
 executables are really built from the git source. It also makes sure that
 the same, tested dependencies are used and statically built into the executable.
@@ -22,7 +22,7 @@ Table of Contents
 
 - [Preparing the Gitian builder host](#preparing-the-gitian-builder-host)
 - [Getting and building the inputs](#getting-and-building-the-inputs)
-- [Building Bitcoin Core](#building-bitcoin-core)
+- [Building fartcoin Core](#building-fartcoin-core)
 - [Building an alternative repository](#building-an-alternative-repository)
 - [Signing externally](#signing-externally)
 - [Uploading signatures](#uploading-signatures)
@@ -40,7 +40,7 @@ Alternatively, you can install one of the supported operating systems in a virtu
 Any kind of virtualization can be used, for example:
 - [VirtualBox](https://www.virtualbox.org/) (covered by this guide)
 - [KVM](http://www.linux-kvm.org/page/Main_Page)
-- [LXC](https://linuxcontainers.org/), see also [Gitian host docker container](https://github.com/gdm85/tenku/tree/master/docker/gitian-bitcoin-host/README.md).
+- [LXC](https://linuxcontainers.org/), see also [Gitian host docker container](https://github.com/gdm85/tenku/tree/master/docker/gitian-fartcoin-host/README.md).
 
 Please refer to the following documents to set up the operating systems and Gitian.
 
@@ -53,20 +53,20 @@ Please refer to the following documents to set up the operating systems and Giti
 Getting and building the inputs
 --------------------------------
 
-At this point you have two options, you can either use the automated script (found in [https://github.com/bitcoin/bitcoin/blob/master/contrib/gitian-build.sh](https://github.com/bitcoin/bitcoin/blob/master/contrib/gitian-build.sh), only works in Debian/Ubuntu) or you could manually do everything by following this guide.
+At this point you have two options, you can either use the automated script (found in [https://github.com/fartcoin/fartcoin/blob/master/contrib/gitian-build.sh](https://github.com/fartcoin/fartcoin/blob/master/contrib/gitian-build.sh), only works in Debian/Ubuntu) or you could manually do everything by following this guide.
 If you are using the automated script, then run it with the `--setup` command. Afterwards, run it with the `--build` command (example: `contrib/gitian-build.sh -b signer 0.15.0`). Otherwise ignore this.
 
-Follow the instructions in [https://github.com/bitcoin/bitcoin/blob/master/doc/release-process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/release-process.md#fetch-and-create-inputs-first-time-or-when-dependency-versions-change)
-in the bitcoin repository under 'Fetch and create inputs' to install sources which require
+Follow the instructions in [https://github.com/fartcoin/fartcoin/blob/master/doc/release-process.md](https://github.com/fartcoin/fartcoin/blob/master/doc/release-process.md#fetch-and-create-inputs-first-time-or-when-dependency-versions-change)
+in the fartcoin repository under 'Fetch and create inputs' to install sources which require
 manual intervention. Also optionally follow the next step: 'Seed the Gitian sources cache
 and offline git repositories' which will fetch the remaining files required for building
 offline.
 
-Building Bitcoin Core
+Building fartcoin Core
 ----------------
 
-To build Bitcoin Core (for Linux, OS X and Windows) just follow the steps under 'perform
-Gitian builds' in [https://github.com/bitcoin/bitcoin/blob/master/doc/release-process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/release-process.md#setup-and-perform-gitian-builds) in the bitcoin repository.
+To build fartcoin Core (for Linux, OS X and Windows) just follow the steps under 'perform
+Gitian builds' in [https://github.com/fartcoin/fartcoin/blob/master/doc/release-process.md](https://github.com/fartcoin/fartcoin/blob/master/doc/release-process.md#setup-and-perform-gitian-builds) in the fartcoin repository.
 
 This may take some time as it will build all the dependencies needed for each descriptor.
 These dependencies will be cached after a successful build to avoid rebuilding them when possible.
@@ -80,12 +80,12 @@ tail -f var/build.log
 
 Output from `gbuild` will look something like
 
-    Initialized empty Git repository in /home/gitianuser/gitian-builder/inputs/bitcoin/.git/
+    Initialized empty Git repository in /home/gitianuser/gitian-builder/inputs/fartcoin/.git/
     remote: Counting objects: 57959, done.
     remote: Total 57959 (delta 0), reused 0 (delta 0), pack-reused 57958
     Receiving objects: 100% (57959/57959), 53.76 MiB | 484.00 KiB/s, done.
     Resolving deltas: 100% (41590/41590), done.
-    From https://github.com/bitcoin/bitcoin
+    From https://github.com/fartcoin/fartcoin
     ... (new tags, new branch etc)
     --- Building for trusty amd64 ---
     Stopping target if it is up
@@ -111,18 +111,18 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/laanwj/bitcoin.git
+URL=https://github.com/laanwj/fartcoin.git
 COMMIT=2014_03_windows_unicode_path
-./bin/gbuild --commit bitcoin=${COMMIT} --url bitcoin=${URL} ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
-./bin/gbuild --commit bitcoin=${COMMIT} --url bitcoin=${URL} ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
-./bin/gbuild --commit bitcoin=${COMMIT} --url bitcoin=${URL} ../bitcoin/contrib/gitian-descriptors/gitian-osx.yml
+./bin/gbuild --commit fartcoin=${COMMIT} --url fartcoin=${URL} ../fartcoin/contrib/gitian-descriptors/gitian-linux.yml
+./bin/gbuild --commit fartcoin=${COMMIT} --url fartcoin=${URL} ../fartcoin/contrib/gitian-descriptors/gitian-win.yml
+./bin/gbuild --commit fartcoin=${COMMIT} --url fartcoin=${URL} ../fartcoin/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Building fully offline
 -----------------------
 
 For building fully offline including attaching signatures to unsigned builds, the detached-sigs repository
-and the bitcoin git repository with the desired tag must both be available locally, and then gbuild must be
+and the fartcoin git repository with the desired tag must both be available locally, and then gbuild must be
 told where to find them. It also requires an apt-cacher-ng which is fully-populated but set to offline mode, or
 manually disabling gitian-builder's use of apt-get to update the VM build environment.
 
@@ -141,7 +141,7 @@ cd /path/to/gitian-builder
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root apt-get update
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root \
   -e DEBIAN_FRONTEND=noninteractive apt-get --no-install-recommends -y install \
-  $( sed -ne '/^packages:/,/[^-] .*/ {/^- .*/{s/"//g;s/- //;p}}' ../bitcoin/contrib/gitian-descriptors/*|sort|uniq )
+  $( sed -ne '/^packages:/,/[^-] .*/ {/^- .*/{s/"//g;s/- //;p}}' ../fartcoin/contrib/gitian-descriptors/*|sort|uniq )
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root apt-get -q -y purge grub
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root -e DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 ```
@@ -161,12 +161,12 @@ Then when building, override the remote URLs that gbuild would otherwise pull fr
 ```bash
 
 cd /some/root/path/
-git clone https://github.com/bitcoin-core/bitcoin-detached-sigs.git
+git clone https://github.com/fartcoin-core/fartcoin-detached-sigs.git
 
-BTCPATH=/some/root/path/bitcoin
-SIGPATH=/some/root/path/bitcoin-detached-sigs
+BTCPATH=/some/root/path/fartcoin
+SIGPATH=/some/root/path/fartcoin-detached-sigs
 
-./bin/gbuild --url bitcoin=${BTCPATH},signature=${SIGPATH} ../bitcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+./bin/gbuild --url fartcoin=${BTCPATH},signature=${SIGPATH} ../fartcoin/contrib/gitian-descriptors/gitian-win-signer.yml
 ```
 
 Signing externally
@@ -181,9 +181,9 @@ When you execute `gsign` you will get an error from GPG, which can be ignored. C
 in `gitian.sigs` to your signing machine and do
 
 ```bash
-    gpg --detach-sign ${VERSION}-linux/${SIGNER}/bitcoin-linux-*-build.assert
-    gpg --detach-sign ${VERSION}-win-unsigned/${SIGNER}/bitcoin-win-*-build.assert
-    gpg --detach-sign ${VERSION}-osx-unsigned/${SIGNER}/bitcoin-osx-*-build.assert
+    gpg --detach-sign ${VERSION}-linux/${SIGNER}/fartcoin-linux-*-build.assert
+    gpg --detach-sign ${VERSION}-win-unsigned/${SIGNER}/fartcoin-win-*-build.assert
+    gpg --detach-sign ${VERSION}-osx-unsigned/${SIGNER}/fartcoin-osx-*-build.assert
 ```
 
 You may have other .assert files as well (e.g. `signed` ones), in which case you should sign them too. You can see all of them by doing `ls ${VERSION}-*/${SIGNER}`.
@@ -195,5 +195,5 @@ Uploading signatures
 ---------------------
 
 After building and signing you can push your signatures (both the `.assert` and `.assert.sig` files) to the
-[bitcoin-core/gitian.sigs](https://github.com/bitcoin-core/gitian.sigs/) repository, or if that's not possible create a pull
+[fartcoin-core/gitian.sigs](https://github.com/fartcoin-core/gitian.sigs/) repository, or if that's not possible create a pull
 request. You can also mail the files to Wladimir (laanwj@gmail.com) and he will commit them.
