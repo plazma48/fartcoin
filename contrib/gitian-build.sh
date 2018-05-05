@@ -8,13 +8,13 @@ verify=false
 build=true
 
 # Systems to build
-linux=false
+linux=true
 windows=true
-osx=false
+osx=true
 
 # Other Basic variables
-SIGNER="20A93DED3979D75C"
-VERSION=0.16
+SIGNER=
+VERSION=
 commit=false
 url=https://github.com/fartcoin-project/fartcoin
 proc=4
