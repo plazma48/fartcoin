@@ -159,6 +159,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         /** Create wallet frame and make it the central widget */
         walletFrame = new WalletFrame(_platformStyle, this);
         setCentralWidget(walletFrame);
+	walletFrame->setStyleSheet("WalletFrame { background: #111111 url(:/res/icons/wallet_bgsplash) no-repeat; background-position: bottom left; border: 1px solid grey; border-radius: 7px;}");
     } else
 #endif // ENABLE_WALLET
     {
