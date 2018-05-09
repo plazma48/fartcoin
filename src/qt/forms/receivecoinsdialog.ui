@@ -2,6 +2,11 @@
 <ui version="4.0">
  <class>ReceiveCoinsDialog</class>
  <widget class="QWidget" name="ReceiveCoinsDialog">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 30%); color: #DDDDDD; border: 1px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -30,6 +35,11 @@
        <layout class="QGridLayout" name="gridLayout">
         <item row="5" column="0">
          <widget class="QLabel" name="label">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; border-radius: 0px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="toolTip">
            <string>An optional amount to request. Leave this empty or zero to not request a specific amount.</string>
           </property>
@@ -46,6 +56,11 @@
         </item>
         <item row="6" column="0">
          <widget class="QLabel" name="label_3">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; border-radius: 0px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="toolTip">
            <string>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Fartcoin network.</string>
           </property>
@@ -62,6 +77,11 @@
         </item>
         <item row="4" column="2">
          <widget class="QLineEdit" name="reqLabel">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 1px solid grey; border-radius: 0px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="toolTip">
            <string>An optional label to associate with the new receiving address.</string>
           </property>
@@ -69,6 +89,11 @@
         </item>
         <item row="2" column="2">
          <widget class="QLabel" name="label_5">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="text">
            <string>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</string>
           </property>
@@ -76,6 +101,11 @@
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_2">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="toolTip">
            <string>An optional label to associate with the new receiving address.</string>
           </property>
@@ -92,6 +122,11 @@
         </item>
         <item row="6" column="2">
          <widget class="QLineEdit" name="reqMessage">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 1px solid grey; border-radius: 0px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="toolTip">
            <string>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Fartcoin network.</string>
           </property>
@@ -101,6 +136,11 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QPushButton" name="receiveButton">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(200, 200, 200, 100%);color: #222;padding: 5px; border: 1px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
             <property name="minimumSize">
              <size>
               <width>150</width>
@@ -108,7 +148,7 @@
              </size>
             </property>
             <property name="text">
-             <string>&amp;Request payment</string>
+             <string>Smell (&amp;Request) Farts</string>
             </property>
             <property name="icon">
              <iconset resource="../bitcoin.qrc">
@@ -118,6 +158,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="clearButton">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(200, 200, 200, 100%);color: #222;padding: 5px; border: 1px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -156,6 +201,11 @@
         </item>
         <item row="7" column="0">
          <widget class="QLabel" name="label_7">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
           <property name="text">
            <string/>
           </property>
@@ -165,6 +215,11 @@
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="BitcoinAmountField" name="reqAmount">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 1px solid grey; border-radius: 0px; </string> 
+         </property>
+<!-- Style of top-background --> 
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -190,6 +245,11 @@
           </item>
           <item>
            <widget class="QCheckBox" name="useBech32">
+<!-- Style of top-background -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of top-background --> 
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -263,6 +323,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="label_6">
+<!-- Style of button -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0%); border: 0px solid grey; </string> 
+         </property>
+<!-- Style of button --> 
         <property name="font">
          <font>
           <weight>75</weight>
@@ -291,6 +356,11 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QPushButton" name="showRequestButton">
+<!-- Style of button -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(200, 200, 200, 100%);color: #222;padding: 5px; border: 1px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of button --> 
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -311,6 +381,11 @@
         </item>
         <item>
          <widget class="QPushButton" name="removeRequestButton">
+<!-- Style of button -->              
+	 <property name="styleSheet">
+         <string notr="true">background-color: rgba(200, 200, 200, 100%);color: #222;padding: 5px; border: 1px solid grey; border-radius: 7px; </string> 
+         </property>
+<!-- Style of button --> 
           <property name="enabled">
            <bool>false</bool>
           </property>
