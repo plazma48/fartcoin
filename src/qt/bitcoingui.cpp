@@ -159,7 +159,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         /** Create wallet frame and make it the central widget */
         walletFrame = new WalletFrame(_platformStyle, this);
         setCentralWidget(walletFrame);
-	walletFrame->setStyleSheet("WalletFrame { background: #111111 url(:/res/icons/wallet_bgsplash) no-repeat; background-position: bottom left; border: 1px solid grey; border-radius: 7px;}");
+	walletFrame->setStyleSheet("WalletFrame { background-image: url(:/icons/wallet_bgsplash); background-position: bottom left; border: 1px solid grey; border-radius: 7px;}");
     } else
 #endif // ENABLE_WALLET
     {
@@ -293,7 +293,7 @@ BitcoinGUI::~BitcoinGUI()
 void BitcoinGUI::createActions()
 {
     QActionGroup *tabGroup = new QActionGroup(this);
-
+	setIconSize(QSize(64, 64));
     overviewAction = new QAction(platformStyle->SingleColorIcon(":/icons/overview"), tr("&Home"), this);
     overviewAction->setStatusTip(tr("Show general overview of wallet"));
     overviewAction->setToolTip(overviewAction->statusTip());
@@ -302,7 +302,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(platformStyle->SingleColorIcon(":/icons/send"), tr("&Fart"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Fartcoin address"));
+    sendCoinsAction->setStatusTip(tr("Send farts to a Fartcoin address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -313,7 +313,7 @@ void BitcoinGUI::createActions()
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     receiveCoinsAction = new QAction(platformStyle->SingleColorIcon(":/icons/receiving_addresses"), tr("&Smell"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and fartcoin: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request farts (generates QR codes and fartcoin: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -324,7 +324,7 @@ void BitcoinGUI::createActions()
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
 
     historyAction = new QAction(platformStyle->SingleColorIcon(":/icons/history"), tr("&Past"), this);
-    historyAction->setStatusTip(tr("Browse transaction history"));
+    historyAction->setStatusTip(tr("Browse fart history"));
     historyAction->setToolTip(historyAction->statusTip());
     historyAction->setCheckable(true);
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
@@ -383,9 +383,9 @@ void BitcoinGUI::createActions()
     openRPCConsoleAction->setEnabled(false);
 
     usedSendingAddressesAction = new QAction(platformStyle->TextColorIcon(":/icons/address-book"), tr("&Sending addresses..."), this);
-    usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
+    usedSendingAddressesAction->setStatusTip(tr("List of used Fart addresses"));
     usedReceivingAddressesAction = new QAction(platformStyle->TextColorIcon(":/icons/address-book"), tr("&Receiving addresses..."), this);
-    usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
+    usedReceivingAddressesAction->setStatusTip(tr("List of used Smell addresses"));
 
     openAction = new QAction(platformStyle->TextColorIcon(":/icons/open"), tr("Open &URI..."), this);
     openAction->setStatusTip(tr("Open a fartcoin: URI or payment request"));
